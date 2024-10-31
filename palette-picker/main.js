@@ -2,7 +2,6 @@ import './style.css';
 import { v4 as uuidv4 } from 'uuid';
 // console.log(uuidv4());
 import initPalettes from './public/default.json';
-import path from 'path'; 
 
 // local storage imports
 import {
@@ -10,7 +9,6 @@ import {
   getLocalStorage
 } from './src/localStorage';
 // init local storage
-setLocalStorageKey('data', initPalettes);
 
 // utils imports
 import { delay } from './src/utils';
@@ -19,7 +17,6 @@ import { delay } from './src/utils';
 import {
   getPalettes,
   setPalettes,
-  initPalettesIfEmpty,
   addPalette,
   removePalette
 } from './src/data.js';
@@ -52,7 +49,7 @@ const handleCreate = () => {
   const title = document.querySelector(`#palette-title`);
   const colors = [];
   for (const item of document.querySelectorAll(`input[type='color']`)) {
-    colors.push(item.value);
+    colors.push(item);
   }
   let temp = document.querySelectorAll(`input[type='radio']`);
   for (const val of temp) {
@@ -64,11 +61,19 @@ const handleCreate = () => {
   const newPalette = {};
   newPalette.uuid = uuidv4();
   newPalette.title = title.value;
-  newPalette.colors = colors;
+  newPalette.colors = colors.map(item => item.value);
   newPalette.temperature = temp.value.toLowerCase();
   const palettes = getLocalStorage('data');  
   palettes.push(newPalette);
   setLocalStorageKey('data', palettes);
+  // resetting elements
+  title.value = '';
+  for (const item of colors) {
+    item.value = '#ffffff';
+  }
+  temp.checked = false;
+  document.querySelector('input[value="Neutral"]').checked = true;
+
   showPalettes();
 }
 
@@ -155,7 +160,7 @@ const showPalettes = () => {
     children.push(bannerDiv);
 
     // finally return children
-    const palette = document.createElement('div');
+    const palette = document.createElement('li');
     palette.classList.add('palette')
     palette.replaceChildren(...children);
     // for (const val of children) {
@@ -170,7 +175,7 @@ const showPalettes = () => {
   MAIN DRIVER
 */
 const main = () => {
-  initPalettesIfEmpty();
+  getPalettes();
   showPalettes();
   initCopyClipboard();
   // what the fuck is this thing doing here LMAO

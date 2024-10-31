@@ -3,6 +3,8 @@ import {
   setLocalStorageKey
 } from './localStorage'
 
+import path from 'path';
+
 /*
 DATA LAYER FUNCTIONS
 */
@@ -10,7 +12,10 @@ DATA LAYER FUNCTIONS
 // Returns: [Array] palettes
 const getPalettes = () => {
   const palettes = getLocalStorage('data');
-  if (palettes.length === 0) { return []; }
+  if (palettes.length === 0) {
+    setPalettes(JSON.parse(path.join(__dirname, '../public/default.json')));
+    return getLocalStorage('data');
+  }
   return palettes;
 }
 // Params: [Array] new palettes
@@ -18,13 +23,6 @@ const getPalettes = () => {
 const setPalettes = (newPalettes) => {
   localStorage.clear(); 
   setLocalStorageKey('data', newPalettes);
-}
-// Params: [None]
-// Returns: [None]
-const initPalettesIfEmpty = () => {
-  if (getPalettes().length === 0) {
-    setPalettes(JSON.parse(path.join(__dirname, './public/default.json')));
-  }
 }
 // Params: [Object] palette obj
 // Returns: [None]
@@ -44,7 +42,6 @@ const removePalette = (uuid) => {
 export {
   getPalettes,
   setPalettes,
-  initPalettesIfEmpty,
   addPalette,
   removePalette
 }

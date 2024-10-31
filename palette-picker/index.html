@@ -1,72 +1,75 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-    </style>
-    <title>Palette Picker</title>
-  </head>
-  <body>
-    <div id="header">
-      <h1>Palette Picker</h1>
-    </div>
-      <div id="flex-body">
-        <div id="form-block">
-          <div id="form-body">
-            <h2>Add a Palette</h2>
-            <div>
-              <label for="paletteInput">Palette Title:</label>
-              <input type="text" id="palette-title" name="paletteInput">
-            </div>
-            <div>
-              <label for="Color1">Color #1</label>
-              <input type="color" id="color-1" name="Color1" value="#FFFFFF">
-            </div>
-            <div>
-              <label for="Color2">Color #2</label>
-              <input type="color" id="color-2" name="Color2" value="#FFFFFF">  
-            </div>
-            <div>
-              <label for="Color3">Color #1</label>
-              <input type="color" id="color-3" name="Color3" value="#FFFFFF">
-            </div>
-            <div id="temp-text">Temperature</div>
-            <div>
-              <label for="temp-1">Warm</label>
-              <input type="radio" id="temp-1" name="temp" value="Warm">
-              <label for="temp-2">Neutral</label>
-              <input type="radio" id="temp-2" name="temp" value="Neutral">
-              <label for="temp-3">Cool</label>
-              <input type="radio" id="temp-3" name="temp" value="Cool">
-            </div> 
-            <div>
-              <button id="create-button" type="button">Create New Palette</button>
-            </div>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+  </style>
+  <title>Palette Picker</title>
+</head>
+
+<body>
+  <div id="header">
+    <h1>Palette Picker</h1>
+  </div>
+  <div id="flex-body">
+    <div id="form-block">
+      <div id="form-body">
+        <h2>Add a Palette</h2>
+        <div>
+          <label for="paletteInput">Palette Title:</label>
+          <input type="text" id="palette-title" name="paletteInput" required>
         </div>
-        <div id="palettes-block">
-          <div id="palettes-block-title">
-            <h2>Palettes</h2>
-          </div>
-          <div id="palettes-block-content">
-            <div class="palette">
-              <div class="title"></div>
-              <div class="color1"></div>
-              <div class="copy1"></div>
-              <div class="color2"></div>
-              <div class="copy2"></div>
-              <div class="color3"></div>
-              <div class="copy3"></div>
-              <div class="delete"></div>
-              <div class="banner"></div>
-            </div>
-          </div>
+        <div>
+          <label for="Color1">Color #1</label>
+          <input type="color" id="color-1" name="Color1" value="#FFFFFF">
         </div>
+        <div>
+          <label for="Color2">Color #2</label>
+          <input type="color" id="color-2" name="Color2" value="#FFFFFF">
+        </div>
+        <div>
+          <label for="Color3">Color #1</label>
+          <input type="color" id="color-3" name="Color3" value="#FFFFFF">
+        </div>
+        <fieldset>
+          <legend>Temperature</legend>
+          <label for="temp-1">Warm</label>
+          <input type="radio" id="temp-1" name="temp" value="Warm">
+          <label for="temp-2">Neutral</label>
+          <input type="radio" id="temp-2" name="temp" value="Neutral" checked="true">
+          <label for="temp-3">Cool</label>
+          <input type="radio" id="temp-3" name="temp" value="Cool">
+        </fieldset>
+        <div>
+          <button id="create-button" type="button">Create New Palette</button>
+        </div>
+      </div>
     </div>
-    <script type="module" src="/main.js"></script>
-  </body>
+    <div id="palettes-block">
+      <div id="palettes-block-title">
+        <h2>Palettes</h2>
+      </div>
+      <div id="palettes-block-content">
+        <div class="palette">
+          <div class="title"></div>
+          <div class="color1"></div>
+          <div class="copy1"></div>
+          <div class="color2"></div>
+          <div class="copy2"></div>
+          <div class="color3"></div>
+          <div class="copy3"></div>
+          <div class="delete"></div>
+          <div class="banner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>
