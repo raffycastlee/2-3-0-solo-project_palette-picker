@@ -1,0 +1,125 @@
+* {
+  font-family: "DynaPuff"
+}
+
+html {
+  height: 100%;
+  overflow: scroll;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+#header {
+  margin: 5px 10px;
+  height: 50;
+  font-size: 20px;
+}
+
+#flex-body {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  height: 100%;
+}
+
+#form-block {
+  display: flex;
+  justify-content: center;
+  background-color: bisque;
+}
+
+#form-body {
+  color: white;
+  background-color: rgb(99, 99, 99);
+  max-width: 400px;
+  border-radius: 10px;
+  margin: 20px 0;
+  padding: 10px 25px;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#temp-text {
+  align-self: flex-start;
+}
+
+#create-button {
+  margin-top: 10px;
+  color: white;
+  background-color: #807f84;
+  border-color: #ecebf0;
+}
+
+#palettes-block {
+  display: flex;
+  background-color: beige;
+  flex-direction: column;
+  align-items: center;
+}
+
+#palettes-block-title {
+  display: flex;
+  flex-basis: 30px;
+}
+
+#palettes-block-content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.palette {
+  font-size: 14px;
+  background-color: rgb(99, 99, 99);
+  height: 300px;
+  width: 260px;
+  border-radius: 0 30px 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:
+    repeat(5, 1fr) 25px;
+  grid-template-areas:
+    "title title"
+    "color1 copy1"
+    "color2 copy2"
+    "color3 copy3"
+    "delete delete"
+    "banner banner";
+}
+
+.palette .title {
+  font-size: 22px;
+  grid-area: title;
+}
+
+.palette .delete {
+  grid-area: delete;
+}
+
+.palette .banner {
+  grid-area: banner;
+}
+
+.palette [class^="color"] {
+  border: 10px solid;
+}
+
+#delete-button {
+  margin-top: 10px;
+  color: white;
+  background-color: #807f84;
+  border-color: #ecebf0;
+}
