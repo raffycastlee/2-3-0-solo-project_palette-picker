@@ -67,7 +67,7 @@ const handleClick = async (event) => {
 
   console.log('i made it through1');
 
-  if (event.target.closest('button').id === 'delete') {
+  if (event.target.closest('button').classList.contains('delete')) {
     removePalette(event.target.dataset.uuid);
   } else {
     // do the copy to clipboard here
@@ -105,6 +105,7 @@ const displayPalettes = () => {
     // title h2
     const title = document.createElement('h2');
     title.textContent = palette.title;
+    title.classList.add('palette');
     li.append(title); // appending to li parent
 
     // 3-color menu
@@ -112,6 +113,8 @@ const displayPalettes = () => {
       // color rectangle div
       const colorDiv = document.createElement('div');
       colorDiv.innerHTML = '<span style="color:white">Text</span><span style="color:black">Example</span>';
+      colorDiv.style.backgroundColor = color;
+      colorDiv.classList.add('color-div');
       // color copy button
       const colorButton = document.createElement('button');
       colorButton.id = index;
@@ -120,19 +123,21 @@ const displayPalettes = () => {
       // color container div
       const colorContainer = document.createElement('div');
       colorContainer.append(colorDiv, colorButton);
-      colorContainer.ariaLabel = `color-${index}`;
+      colorContainer.classList.add('color-container');
+      colorContainer.ariaLabel = `color-${index+1}`;
       li.append(colorContainer); // appending to li parent
     })
 
     // delete palette button
     const deleteButton = document.createElement('button');
-    deleteButton.id = 'delete';
+    deleteButton.classList.add('delete') ;
     deleteButton.textContent = 'Delete Palette';
     deleteButton.dataset.uuid = palette.uuid;
     li.append(deleteButton); // appending to li parent
 
     // temp banner
     const tempBanner = document.createElement('div');
+    tempBanner.classList.add('temp-banner');
     switch (palette.temperature) {
       case 'warm':
         tempBanner.style.backgroundColor = "#431212";
@@ -144,7 +149,6 @@ const displayPalettes = () => {
         tempBanner.style.backgroundColor = "#121e43";
         break;
     }
-    tempBanner.style.backgroundColor
     const tempText = document.createElement('p');
     tempText.textContent = palette.temperature;
     tempBanner.append(tempText);
