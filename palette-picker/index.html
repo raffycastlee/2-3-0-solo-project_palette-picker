@@ -5,6 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Palette Picker</title>
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <header>
@@ -14,14 +15,22 @@
       <section id="form-section" aria-label="form-section">
         <form aria-label="form">
           <h2>Add a Palette</h2>
-          <label for="title">Palette Title</label>
-          <input type="text" id="title" name="title" required/>
-          <label for="color-1">Color #1:</label>
-          <input type="color" id="color-1" name="color1" />
-          <label for="color-2">Color #2:</label>
-          <input type="color" id="color-2" name="color2" />
-          <label for="color-3">Color #3:</label>
-          <input type="color" id="color-3" name="color3" />
+          <div class="color-container" aria-label="color-0">
+            <label for="title">Palette Title:</label>
+            <input type="text" id="title" name="title" required/>
+          </div>
+          <div class="color-container" aria-label="color-1">
+            <label for="color-1">Color #1:</label>
+            <input type="color" id="color-1" name="color1" />
+          </div>
+          <div class="color-container" aria-label="color-2">
+            <label for="color-2">Color #2:</label>
+            <input type="color" id="color-2" name="color2" />
+          </div>
+          <div class="color-container" aria-label="color-3">
+            <label for="color-3">Color #3:</label>
+            <input type="color" id="color-3" name="color3" />
+          </div>
           <fieldset>
             <legend>Temperature</legend>
             <input type="radio" id="warm" name="temp" value="warm"/>
