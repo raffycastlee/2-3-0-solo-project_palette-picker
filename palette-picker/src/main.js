@@ -1,8 +1,8 @@
 import {
   displayPalettes,
   handleSubmit
-} from './src/dom-helpers.js'
-import { initPalettesIfEmpty } from './src/crud.js'
+} from './dom-helpers.js'
+import { initPalettesIfEmpty } from './crud.js'
 
 const main = () => {
   initPalettesIfEmpty();
