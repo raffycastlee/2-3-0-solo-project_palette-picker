@@ -26,11 +26,8 @@ const handleSubmit = (event) => {
 }
 
 const handleClick = async (event) => {
-  console.log('clicked!')
   // only handle click on buttons!
   if (!event.target.matches('button')) return;
-
-  console.log('i made it through1');
 
   if (event.target.closest('button').classList.contains('delete')) {
     removePalette(event.target.dataset.uuid);
@@ -73,8 +70,6 @@ const displayPalettes = () => {
     title.textContent = palette.title;
     title.classList.add('palette');
     li.append(title); // appending to li parent
-
-    console.log(palette);
 
     // 3-color menu
     palette.colors.forEach((color, index) => {
