@@ -1,48 +1,13 @@
-import defaultPalettes from '../public/palettes.json';
 import { v4 as uuidv4 } from 'uuid';
+import { getPalettes } from './data-store.js'
 import {
-  getLocalStorage,
-  setLocalStorageKey
-} from './data-store.js'
+  addPalette,
+  removePalette
+} from './crud.js'
 
-// data-layer.js
-const getPalettes = () => {
-  return getLocalStorage('data');
-}
-
-const setPalettes = (palettes) => {
-  setLocalStorageKey('data', palettes);
-}
-
-const initPalettesIfEmpty = () => {
-  // on refresh, check if local storage is empty. if it is, replace it
-  // with default values from palettes.json
-  currPalettes = getPalettes();
-  if (currPalettes === null) {
-    setPalettes(defaultPalettes);
-    currPalettes =  defaultPalettes;
-  }
-}
-
-const addPalette = (palette) => {
-  currPalettes.push(palette);
-  setPalettes(currPalettes);
-}
-
-const removePalette = (paletteUUID) => {
-  const removeIndex = currPalettes.findIndex(palette => palette.uuid === paletteUUID);
-  currPalettes.splice(removeIndex, 1);
-  setPalettes(currPalettes);
-  displayPalettes();
-}
-
-
-// dom-functions.js
-// event handlers
 const handleSubmit = (event) => {
   // boiler
   event.preventDefault();
-  
   const newPalette = {
     uuid: uuidv4(),
     title: event.target.title.value,
@@ -69,6 +34,7 @@ const handleClick = async (event) => {
 
   if (event.target.closest('button').classList.contains('delete')) {
     removePalette(event.target.dataset.uuid);
+    displayPalettes();
   } else {
     // do the copy to clipboard here
     await copyColor(event.target.closest('button'));
@@ -98,7 +64,7 @@ const displayPalettes = () => {
   const ul = document.querySelector('ul')
   ul.innerHTML = '';
 
-  currPalettes.forEach(palette => {
+  getPalettes().forEach(palette => {
     // li overall parent
     const li = document.createElement('li');
 
@@ -107,6 +73,8 @@ const displayPalettes = () => {
     title.textContent = palette.title;
     title.classList.add('palette');
     li.append(title); // appending to li parent
+
+    console.log(palette);
 
     // 3-color menu
     palette.colors.forEach((color, index) => {
@@ -163,11 +131,9 @@ const displayPalettes = () => {
   })
 }
 
-// state vars
-let currPalettes;
-
 export {
-  initPalettesIfEmpty,
   handleSubmit,
+  handleClick,
+  copyColor,
   displayPalettes
 }
